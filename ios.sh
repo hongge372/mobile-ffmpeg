@@ -139,7 +139,7 @@ display_help() {
   echo -e "  --enable-freetype\t\tbuild with freetype [no]"
   echo -e "  --enable-fribidi\t\tbuild with fribidi [no]"
   echo -e "  --enable-gmp\t\t\tbuild with gmp [no]"
-  echo -e "  --enable-gnutls\t\tbuild with gnutls [no]"
+  echo -e "  --disable-gnutls\t\tbuild with gnutls [no]"
   echo -e "  --enable-kvazaar\t\tbuild with kvazaar [no]"
   echo -e "  --enable-lame\t\t\tbuild with lame [no]"
   echo -e "  --enable-libaom\t\tbuild with libaom [no]"
@@ -161,6 +161,7 @@ display_help() {
   echo -e "  --enable-tesseract\t\tbuild with tesseract [no]"
   echo -e "  --enable-twolame\t\tbuild with twolame [no]"
   echo -e "  --enable-vo-amrwbenc\t\tbuild with vo-amrwbenc [no]"
+  echo -e "  --disable-linux-perf\t\tbuild with vo-amrwbenc [no]"
   echo -e "  --enable-wavpack\t\tbuild with wavpack [no]\n"
 
   echo -e "GPL libraries:"

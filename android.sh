@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#export ANDROID_NDK_ROOT=${ANDROID_NDK}
+export ANDROID_NDK_ROOT=/Users/tools/android-ndk-r21d
+export ANDROID_HOME=${ANDROID_SDK}
+
 # ARCH INDEXES
 ARCH_ARM_V7A=0
 ARCH_ARM_V7A_NEON=1
@@ -780,8 +784,8 @@ for gpl_library in {18,19,20,21,22}; do
     else
       DOWNLOAD_RESULT=$(download_gpl_library_source ${library_name})
       if [[ ${DOWNLOAD_RESULT} -ne 0 ]]; then
-        echo -e "\n(*) Failed to download GPL library ${library_name} source. Please check build.log file for details. If the problem persists refer to offline building instructions.\n"
-        echo -e "\n(*) Failed to download GPL library ${library_name} source.\n" 1>>${BASEDIR}/build.log 2>&1
+        echo -e "\n(*) err to download GPL library ${library_name} source. Please check build.log file for details. If the problem persists refer to offline building instructions.\n"
+        echo -e "\n(*) err to download GPL library ${library_name} source.\n" 1>>${BASEDIR}/build.log 2>&1
         exit 1
       fi
     fi
@@ -862,9 +866,9 @@ if [[ ! -z ${ANDROID_ARCHITECTURES} ]]; then
   ${ANDROID_NDK_ROOT}/ndk-build -B 1>>${BASEDIR}/build.log 2>&1
 
   if [ $? -eq 0 ]; then
-    echo "ok"
+    echo "ok $?"
   else
-    echo "failed"
+    echo "err to compile ffmpeg $?"
     exit 1
   fi
 
@@ -873,14 +877,14 @@ if [[ ! -z ${ANDROID_ARCHITECTURES} ]]; then
   ./gradlew app:clean app:assembleRelease app:testReleaseUnitTest 1>>${BASEDIR}/build.log 2>&1
 
   if [ $? -ne 0 ]; then
-    echo -e "failed\n"
+    echo -e "err to gradlew build \n"
     exit 1
   fi
 
   cp ${BASEDIR}/android/app/build/outputs/aar/mobile-ffmpeg-release.aar ${MOBILE_FFMPEG_AAR}/mobile-ffmpeg.aar 1>>${BASEDIR}/build.log 2>&1
 
   if [ $? -ne 0 ]; then
-    echo -e "failed\n"
+    echo -e "err to build aar \n"
     exit 1
   fi
 
