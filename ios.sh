@@ -1408,47 +1408,5 @@ if [[ -n ${TARGET_ARCH_LIST[0]} ]]; then
       cp "${BASEDIR}/LICENSE.LGPLv3" "${FFMPEG_UNIVERSAL}/LICENSE" 1>>"${BASEDIR}/build.log" 2>&1
     fi
 
-    # 3. MOBILE FFMPEG
-    MOBILE_FFMPEG_VERSION=$(get_mobile_ffmpeg_version)
-    MOBILE_FFMPEG_UNIVERSAL="${BASEDIR}/prebuilt/ios-universal/mobile-ffmpeg-universal"
-    MOBILE_FFMPEG_FRAMEWORK_PATH="${BASEDIR}/prebuilt/ios-framework/mobileffmpeg.framework"
-    mkdir -p "${MOBILE_FFMPEG_UNIVERSAL}/include" 1>>"${BASEDIR}/build.log" 2>&1 || exit 1
-    mkdir -p "${MOBILE_FFMPEG_UNIVERSAL}/lib" 1>>"${BASEDIR}/build.log" 2>&1 || exit 1
-    rm -rf "${MOBILE_FFMPEG_FRAMEWORK_PATH}" 1>>"${BASEDIR}/build.log" 2>&1
-    mkdir -p "${MOBILE_FFMPEG_FRAMEWORK_PATH}/Headers" 1>>"${BASEDIR}/build.log" 2>&1 || exit 1
-    mkdir -p "${MOBILE_FFMPEG_FRAMEWORK_PATH}/Modules" 1>>"${BASEDIR}/build.log" 2>&1 || exit 1
-
-    LIPO_COMMAND="${LIPO} -create"
-    for TARGET_ARCH in "${TARGET_ARCH_LIST[@]}"; do
-      LIPO_COMMAND+=" ${BASEDIR}/prebuilt/ios-${TARGET_ARCH}/mobile-ffmpeg/lib/libmobileffmpeg.${BUILD_LIBRARY_EXTENSION}"
-    done
-    LIPO_COMMAND+=" -output ${MOBILE_FFMPEG_UNIVERSAL}/lib/libmobileffmpeg.${BUILD_LIBRARY_EXTENSION}"
-
-    ${LIPO_COMMAND} 1>>"${BASEDIR}/build.log" 2>&1
-
-    if [ $? -ne 0 ]; then
-      echo -e "failed\n"
-      exit 1
-    fi
-
-    cp -r ${BASEDIR}/prebuilt/ios-${TARGET_ARCH_LIST[0]}/mobile-ffmpeg/include/* ${MOBILE_FFMPEG_UNIVERSAL}/include 1>>"${BASEDIR}/build.log" 2>&1
-    cp -r ${MOBILE_FFMPEG_UNIVERSAL}/include/* ${MOBILE_FFMPEG_FRAMEWORK_PATH}/Headers 1>>"${BASEDIR}/build.log" 2>&1
-    cp "${MOBILE_FFMPEG_UNIVERSAL}/lib/libmobileffmpeg.${BUILD_LIBRARY_EXTENSION}" "${MOBILE_FFMPEG_FRAMEWORK_PATH}/mobileffmpeg" 1>>"${BASEDIR}/build.log" 2>&1
-
-    # COPY THE LICENSES
-    if [ ${GPL_ENABLED} == "yes" ]; then
-      cp "${BASEDIR}/LICENSE.GPLv3" "${MOBILE_FFMPEG_UNIVERSAL}/LICENSE" 1>>"${BASEDIR}/build.log" 2>&1
-      cp "${BASEDIR}/LICENSE.GPLv3" "${MOBILE_FFMPEG_FRAMEWORK_PATH}/LICENSE" 1>>"${BASEDIR}/build.log" 2>&1
-    else
-      cp "${BASEDIR}/LICENSE.LGPLv3" "${MOBILE_FFMPEG_UNIVERSAL}/LICENSE" 1>>"${BASEDIR}/build.log" 2>&1
-      cp "${BASEDIR}/LICENSE.LGPLv3" "${MOBILE_FFMPEG_FRAMEWORK_PATH}/LICENSE" 1>>"${BASEDIR}/build.log" 2>&1
-    fi
-
-    build_info_plist "${MOBILE_FFMPEG_FRAMEWORK_PATH}/Info.plist" "mobileffmpeg" "com.arthenica.mobileffmpeg.MobileFFmpeg" "${MOBILE_FFMPEG_VERSION}" "${MOBILE_FFMPEG_VERSION}"
-    build_modulemap "${MOBILE_FFMPEG_FRAMEWORK_PATH}/Modules/module.modulemap"
-
-    echo -e "Created mobileffmpeg.framework and universal library successfully.\n" 1>>"${BASEDIR}/build.log" 2>&1
-
-    echo -e "ok\n"
   fi
 fi
