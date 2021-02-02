@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/ios-arm64/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/ios-arm64/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/ios-arm64/ffmpeg/include
+
+Name: libavutil
+Description: FFmpeg utility library
+Version: 55.78.100
+Requires: 
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavutil -lm
+Libs.private: 
+Cflags: -I${includedir}

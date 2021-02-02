@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/include
+
+Name: libavutil_neon
+Description: FFmpeg utility library
+Version: 56.64.100
+Requires: 
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavutil_neon 
+Libs.private: -pthread -lm
+Cflags: -I${includedir}

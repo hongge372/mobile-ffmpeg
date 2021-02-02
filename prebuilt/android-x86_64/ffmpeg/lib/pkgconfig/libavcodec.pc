@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-x86_64/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-x86_64/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-x86_64/ffmpeg/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 58.119.100
+Requires: 
+Requires.private: libswresample >= 3.8.100, libavutil >= 56.64.100
+Conflicts:
+Libs: -L${libdir}  -lavcodec 
+Libs.private: -pthread -lm
+Cflags: -I${includedir}

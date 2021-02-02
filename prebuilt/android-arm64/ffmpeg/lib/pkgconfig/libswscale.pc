@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm64/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm64/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm64/ffmpeg/include
+
+Name: libswscale
+Description: FFmpeg image rescaling library
+Version: 5.8.100
+Requires: 
+Requires.private: libavutil >= 56.64.100
+Conflicts:
+Libs: -L${libdir}  -lswscale 
+Libs.private: -lm
+Cflags: -I${includedir}

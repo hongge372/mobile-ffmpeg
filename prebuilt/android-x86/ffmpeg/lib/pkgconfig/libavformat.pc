@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-x86/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-x86/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-x86/ffmpeg/include
+
+Name: libavformat
+Description: FFmpeg container format library
+Version: 58.65.101
+Requires: 
+Requires.private: libavcodec >= 58.119.100, libswresample >= 3.8.100, libavutil >= 56.64.100
+Conflicts:
+Libs: -L${libdir}  -lavformat 
+Libs.private: -lm
+Cflags: -I${includedir}

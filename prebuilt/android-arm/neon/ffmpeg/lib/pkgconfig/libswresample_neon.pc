@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/include
+
+Name: libswresample_neon
+Description: FFmpeg audio resampling library
+Version: 3.8.100
+Requires: 
+Requires.private: libavutil_neon >= 56.64.100
+Conflicts:
+Libs: -L${libdir}  -lswresample_neon 
+Libs.private: -lm
+Cflags: -I${includedir}

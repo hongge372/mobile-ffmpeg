@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/include
+
+Name: libavdevice_neon
+Description: FFmpeg device handling library
+Version: 58.11.103
+Requires: 
+Requires.private: libavfilter_neon >= 7.100.100, libswscale_neon >= 5.8.100, libavformat_neon >= 58.65.101, libavcodec_neon >= 58.119.100, libswresample_neon >= 3.8.100, libavutil_neon >= 56.64.100
+Conflicts:
+Libs: -L${libdir}  -lavdevice_neon 
+Libs.private: -landroid -lcamera2ndk -lmediandk -lm -landroid -lcamera2ndk -lmediandk -pthread
+Cflags: -I${includedir}

@@ -1,0 +1,14 @@
+prefix=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg
+exec_prefix=${prefix}
+libdir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/lib
+includedir=/Users/wanglizheng/inke/videoedit/mobile-ffmpeg/prebuilt/android-arm/neon/ffmpeg/include
+
+Name: libavformat_neon
+Description: FFmpeg container format library
+Version: 58.65.101
+Requires: 
+Requires.private: libavcodec_neon >= 58.119.100, libswresample_neon >= 3.8.100, libavutil_neon >= 56.64.100
+Conflicts:
+Libs: -L${libdir}  -lavformat_neon 
+Libs.private: -lm
+Cflags: -I${includedir}
